@@ -1,0 +1,37 @@
+LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS:
+Example 1:
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+
+SOLUTION:
+#include <stdio.h>
+#include <string.h>
+int lengthOfLongestSubstring(char* s) {
+    int len = strlen(s);
+    int maxLength = 0;
+    for (int i = 0; i < len; i++) {
+        int count = 0;
+        for (int j = i; j < len; j++) {
+            int repeated = 0;
+            for (int k = i; k < j; k++) {
+                if (s[k] == s[j]) {
+                    repeated = 1;
+                    break;
+                }
+            }
+            if (repeated)
+                break;
+            else
+                count++;
+        }
+        if (count > maxLength)
+            maxLength = count;
+    }
+    return maxLength;
+}
+int main() {
+    char str[] = "pwwkew";
+    printf("%d\n", lengthOfLongestSubstring(str));  // Output: 3
+    return 0;
+}
