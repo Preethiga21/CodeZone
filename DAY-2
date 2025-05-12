@@ -1,0 +1,28 @@
+Alice is exploring N caves each containing a certain amount of energy, gives in an integer array A. when Alice reaches cave i, she can sense the energy from that cave and up to A[i] caves before it.This means she senses energy from the range: start=max(0,i-A[i]) to i.
+Alice wants to determine the total energy she senses throughout her journey.Your task is to find and return an integer value representing the sum of all energies within these sensed ranges for every cave.
+Input specification:
+Input1=An integer value N, representing the number of caves.
+Input2=An integer array A, representing energy of caves.
+Output specification:
+Return an integer value representing the sum of all energies within these sensed ranges for every cave.
+Example 1:
+Input1 : 3
+Input2 : {2,3,1}
+Output:11
+
+SOLUTION:
+class Solution:
+    @classmethod
+    def CaveSum(cls, input1: int, input2: list[int]) -> int:
+        N = input1
+        energies = input2
+        total_sensed_energy = 0
+
+        for i in range(N):
+            sense_range_start = max(0, i - energies[i])
+            sense_range_end = i
+
+            for j in range(sense_range_start, sense_range_end + 1):
+                total_sensed_energy += energies[j]
+
+        return total_sensed_energy
